@@ -5,7 +5,6 @@ Cross-platform, free and open-source VAST jwPlayer(without any License key).  Th
 <pre>
 <code>
     $ git clone git@github.com:clickyab/clickyab-vast-jwplayer.git
-# 
 </code>
 </pre>
     
