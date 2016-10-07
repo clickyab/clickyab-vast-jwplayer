@@ -4,12 +4,12 @@ Cross-platform, free and open-source VAST jwPlayer(without any License key).  Th
 # Installation
     
 # Usage
-# <ul>
-# <li>clone the project</li>
-# <li>call jwplayer and config it</li>
-# <li>upload vastAD.js to your server</li>
-# <li>Enjoy it :)</li>
-# </ul>
+<ul>
+<li>clone the project</li>
+<li>call jwplayer and config it</li>
+<li>upload vastAD.js to your server</li>
+<li>Enjoy it :)</li>
+</ul>
 
 ```javascript
 <script type="text/javascript">
@@ -28,7 +28,7 @@ Cross-platform, free and open-source VAST jwPlayer(without any License key).  Th
                 }
 
             ],
-            title: "Your Video Title,
+            title: "Your Video Title",
             description: "Your Video Description",
             image: "Your Video Poster"
         }],
@@ -43,10 +43,10 @@ Cross-platform, free and open-source VAST jwPlayer(without any License key).  Th
     });
 </script>
 ```
-# <ul>
-# <li>clickyab_id is your id number in clickyab. example : 2081450003094</li>
-# <li>video_duration in second unit (automatically Generate AD According to video Duration) </li>
-# </ul>
+<ul>
+<li>clickyab_id is your id number in clickyab. example : 2081450003094</li>
+<li>video_duration in second unit (automatically Generate AD According to video Duration) </li>
+</ul>
 
 
 
