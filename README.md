@@ -1,5 +1,6 @@
 # Video Ad Serving Template (VAST) JS Plugin for jwPlayer (Beta)
-VAST/VPAID Advertising For The Most Popular HTML5 Player And Video Platform
+<a target="_blank" href="https://camo.githubusercontent.com/3f3ead5def54346308bb4604debc31c039c85cb5/687474703a2f2f7777772e6a77706c617965722e636f6d2f77702d636f6e74656e742f75706c6f6164732f4a57502d4769744875622d42616e6e65722d312e706e67"><img height="70px" style="max-width:100%;" data-canonical-src="http://www.jwplayer.com/wp-content/uploads/JWP-GitHub-Banner-1.png" title="JW Player Logo" alt="JW Player Logo" src="https://camo.githubusercontent.com/3f3ead5def54346308bb4604debc31c039c85cb5/687474703a2f2f7777772e6a77706c617965722e636f6d2f77702d636f6e74656e742f75706c6f6164732f4a57502d4769744875622d42616e6e65722d312e706e67"></a>
+### VAST/VPAID Advertising For The Most Popular HTML5 Player And Video Platform
 <br>
 Cross-platform, free and open-source VAST jwPlayer(without any License key).  This is an open source project made in [@clickyab](https://github.com/clickyab) team.
 
