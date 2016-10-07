@@ -2,6 +2,12 @@
 Cross-platform, free and open-source VAST jwPlayer(without any License key).  This is an open source project made in [@clickyab](https://github.com/clickyab) team.
 
 # Installation
+<pre>
+<code>
+    $ git clone git@github.com:clickyab/clickyab-vast-jwplayer.git
+# 
+</code>
+</pre>
     
 # Usage
 <ul>
@@ -21,7 +27,7 @@ Cross-platform, free and open-source VAST jwPlayer(without any License key).  Th
             sources: [
                
                 {
-                    file:  'http://cdn.jabeh.com/videos/e62d0e7d2779e9a9e38b4ab9eb27aa4c_240.jbh'  ,
+                    file:  'http://example.com/video.mp4'  ,
                     label: '240',
                     type:"video/mp4"
                     ,"default": "true"
