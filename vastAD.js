@@ -1891,7 +1891,7 @@ if(typeof isLoaded == 'undefined') {
                 if (video.webkitDisplayingFullscreen) {
                     video.webkitExitFullscreen();
                 }
-            },1000)
+            },1500)
 
 
         }
@@ -1986,6 +1986,7 @@ if(typeof isLoaded == 'undefined') {
                 playlist: [{
                     sources:[{
                         file:mediaFile.src,
+                        type:"video/mp4"
                     }],
                 }],
                 aspectratio: "16:9",
