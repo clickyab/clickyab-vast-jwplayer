@@ -6,7 +6,7 @@
 Cross-platform, free and open-source VAST jwPlayer.  This is an open source project made in [@clickyab](https://github.com/clickyab) team.
 
 # Demo
-    [Demo Page](https://miladbruce.github.io/jwplayer-vast.github.io/)
+[Demo Page](https://miladbruce.github.io/jwplayer-vast.github.io)
 
 # Installation
 <pre>
