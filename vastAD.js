@@ -17,6 +17,16 @@ if(typeof isLoaded == 'undefined') {
     //EventListener in mobile and desktops
     var clickEvent = navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i) ? 'touchstart' : 'click';
 
+    var addRule = (function (style) {
+        var sheet = document.head.appendChild(style).sheet;
+        return function (selector, css) {
+            var propText = typeof css === "string" ? css : Object.keys(css).map(function (p) {
+                return p + ":" + (p === "content" ? "'" + css[p] + "'" : css[p]);
+            }).join(";");
+            sheet.insertRule(selector + "{" + propText + "}", sheet.cssRules.length);
+        };
+    })(document.createElement("style"));
+
     function fetchXML(url, identifier, onSuccess, onFailure) {
         var request;
 
@@ -595,7 +605,7 @@ if(typeof isLoaded == 'undefined') {
 
                 this.Media=document.createElement("A");
                 this.Media.style.display="block";
-                this.Media.style.background="url("+this.source+")";
+                this.Media.style.background="url('"+this.source+"')";
                 this.Media.style.backgroundSize="100% 100%";
                 this.Media.setAttribute("href",clickThrough);
                 this.Media.setAttribute("target","_blank");
@@ -1699,19 +1709,28 @@ if(typeof isLoaded == 'undefined') {
         var rendered=null;
         var closeBTN=document.createElement("div");
         closeBTN.setAttribute("class","jw-ads-close-btn-nonlinear jw-icon jw-icon-close");
-        closeBTN.style.width="12px";
-        closeBTN.style.height="12px";
+        closeBTN.style.width="24px";
+        closeBTN.style.height="24px";
         closeBTN.style.display="block";
         closeBTN.style.cursor="pointer";
         closeBTN.style.position="absolute";
         closeBTN.style.color="#fff";
         closeBTN.style.background="#000";
-        closeBTN.style.borderRadius="50%";
-        closeBTN.style.fontSize="8px";
-        closeBTN.style.marginTop="-6px";
+        closeBTN.style.borderRadius="4px";
+        closeBTN.style.border="1px solid #fff";
+        closeBTN.style.fontSize="10px";
         closeBTN.style.lineHeight="11px";
         closeBTN.style.left="none";
-        closeBTN.style.right="10%";
+        closeBTN.style.right="9.6%";
+        closeBTN.style.top="-9px";
+
+
+        addRule(".jw-icon-close:before", {
+            top: "5px",
+            position: "absolute",
+            left: "6px"
+        });
+
         var thats=this.player.getState();
         var that=this;
         closeBTN.addEventListener(clickEvent,function(e){
@@ -1920,20 +1939,35 @@ if(typeof isLoaded == 'undefined') {
         this.activeAd=ad;
 
         var Skip = document.createElement("div");
+
         Skip.setAttribute("class","jw-ads-skip");
-        Skip.style.background = "rgba(0, 0, 0, 0.5) none repeat scroll 0 0";
+
+        Skip.style.background = "rgba(0, 0, 0, 0.7) none repeat scroll 0 0";
         Skip.style.display = "table";
         Skip.style.position = "absolute";
-        Skip.style.left = "20px";
-        Skip.style.bottom = "20px";
-        Skip.style.borderRadius = "5px"
+        Skip.style.left = "0";
+        Skip.style.bottom = "30px";
         Skip.style.textAlign = "center";
         Skip.style.direction = "rtl";
         Skip.style.color = "#ffffff";
-        Skip.style.fontSize = "12px";
-        Skip.style.fontFamily = "Iran-Sans-Light";
-        Skip.style.padding = "10px";
+        Skip.style.borderTop = "1px solid #b6b6b6";
+        Skip.style.borderRight = "1px solid #b6b6b6";
+        Skip.style.borderBottom = "1px solid #b6b6b6";
+        Skip.style.fontSize = "13px";
+        Skip.style.fontFamily = "Tahoma, Arial, Helvetica, sans-serif";
+        Skip.style.padding = "12px 30px 17px 30px";
         Skip.style.zIndex="999999";
+
+        function hoverSkip() {
+            Skip.style.background = "rgba(0, 0, 0, 0.9) none repeat scroll 0 0";
+        }
+        function unHoverSkip() {
+            Skip.style.background = "rgba(0, 0, 0, 0.7) none repeat scroll 0 0";
+        }
+
+        Skip.onmouseout  = unHoverSkip;
+        Skip.onmouseover = hoverSkip;
+
 
         this.adPlayerTimeLine=document.createElement("div");
         this.adPlayerTimeLine.setAttribute("class","jw-ads-timeline");
@@ -2128,9 +2162,25 @@ if(typeof isLoaded == 'undefined') {
         this.Skipable=true;
         this._skipAds();
         var Event=this.activeAd.linear.tracking.events;
+
         if(Event.complete!=undefined){
+
             for(var i=0 ;i<Event.complete.length;i++){
-                this._trackerURL(Event.complete[i].url);
+                var iframeElement = document.createElement('iframe');
+                iframeElement.setAttribute("width", "0");
+                iframeElement.setAttribute("height", "0");
+                iframeElement.setAttribute("scrolling", "no");
+                iframeElement.setAttribute("allowtransparency", "true");
+                iframeElement.setAttribute("hspace", "0");
+                iframeElement.setAttribute("vspace", "0");
+                iframeElement.setAttribute("marginheight", "0");
+                iframeElement.setAttribute("marginwidth", "0");
+                iframeElement.setAttribute("src", Event.complete[i].url);
+                document.body.appendChild(iframeElement);
+                window.setTimeout(function() {
+                    iframeElement.remove();
+                },10000)
+                // this._trackerURL(Event.complete[i].url);
             }
             this.TrackingEvent.complete = false;
         }
@@ -2152,11 +2202,12 @@ if(typeof isLoaded == 'undefined') {
                 var timeSkip=(this.activeAd.linear.root.getAttribute("skipOffset")!=null?this._changeTimeToMe(this.activeAd.linear.root.getAttribute("skipOffset")):parseInt(this.adPlayer.getDuration()));
                 if(timeSkip<posOfAds){
                     this.Skipable=true;
-                    this.skip.innerHTML="نمی بینم";
+                    var skipIcon = '<svg style="position: relative; left: 5px; top: 4px" width="16" height="16" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="2,2 28,16 2,30"/><rect fill="#fff" height="28" width="4" x="26" y="2"/></svg>';
+                    this.skip.innerHTML=skipIcon + "نمی بینم";
                     this.skip.setAttribute("class",this.skip.getAttribute("class")+" jw-icon jw-icon-skip-forward");
                     this.skip.style.cursor = "pointer";
                 }else{
-                    this.skip.innerHTML=timeSkip-parseInt(posOfAds) + "ثانیه تا پایان آگهی بازرگانی";
+                    this.skip.innerHTML=timeSkip-parseInt(posOfAds) + "  " + "ثانیه تا پایان آگهی بازرگانی";
 
                 }
             }
