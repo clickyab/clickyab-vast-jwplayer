@@ -1789,6 +1789,10 @@ if(typeof isLoaded == 'undefined') {
         rendered.appendChild(adsTagA);
         rendered.style.position="absolute";
         rendered.style.bottom="40px";
+        //banner max-width is 728px
+        rendered.style.maxWidth="728px";
+        rendered.style.left="50%";
+        rendered.style.transform="translateX(-50%)";
         this.BannerCampain.appendChild(rendered);
 
         rendered.style.marginLeft="auto";
